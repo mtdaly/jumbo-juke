@@ -39,13 +39,13 @@ spotifyApi.clientCredentialsGrant().then(
 
 app.get("/", function (request, response) {
     console.log("entered get response function");
-    // spotifyApi.getNewReleases({ limit : 5, offset: 0, country: 'SE' })
-    //     .then(function(data) {
-    //         console.log(data.body);
-    //         done();
-    //     }, function(err) {
-    //         console.log("Something went wrong!", err);
-    //     });
+    spotifyApi.getNewReleases({ limit : 5, offset: 0, country: 'SE' })
+        .then(function(data) {
+            console.log(data.body);
+            done();
+        }, function(err) {
+            console.log("Something went wrong!", err);
+        });
     response.send("test");
 });
 
