@@ -36,7 +36,6 @@ spotifyApi.clientCredentialsGrant().then(
 app.get("/", function (request, response) {
     spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
         .then(function(data) {
-            console.log('Some information about this playlist', data.body);
             var temp;
             var artists = new Array();
             data.tracks.forEach( function (track) {
