@@ -14,15 +14,6 @@ var db = mongojs(mongoURL);
 var songs = db.collection('songs');
 
 
-// window.onSpotifyWebPlaybackSDKReady = () => {
-//   const token = 'a5dec87ebd744ebab9ff564c9fa2d802';
-//   const player = new Spotify.Player({
-//     name: 'Web Playback SDK Quick Start Player',
-//     getOAuthToken: cb => { cb(token); }
-//   });
-// };
-
-
 var spotifyApi = new SpotifyWebApi({
     clientId: 'a5dec87ebd744ebab9ff564c9fa2d802',
     clientSecret: 'b13366801081480c845c59802c249cc9'
@@ -47,6 +38,8 @@ app.get("/", function (request, response) {
 });
 
 var top100 = '5nPXGgfCxfRpJHGRY4sovK';
+
+addSongsFromPlaylist(top100);
 
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist(playlistID)
