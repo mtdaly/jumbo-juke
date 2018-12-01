@@ -1,3 +1,6 @@
+var SpotifyWebApi = require('spotify-web-api-node');
+const express = require('express')
+
 window.onSpotifyWebPlaybackSDKReady = () => {
   const token = 'a5dec87ebd744ebab9ff564c9fa2d802';
   const player = new Spotify.Player({
@@ -6,6 +9,8 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   });
 };
 
+
+var SpotifyWebApi = require('spotify-web-api-node');
 
 
 
