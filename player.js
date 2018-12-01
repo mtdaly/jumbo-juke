@@ -39,7 +39,30 @@ app.get("/", function (request, response) {
 
 var top100 = '5nPXGgfCxfRpJHGRY4sovK';
 
-addSongsFromPlaylist(top100);
+spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
+        .then(function(data) {
+            console.log('Some information about this playlist', data.body);
+            var temp;
+            var artists = new Array();
+            data.tracks.forEach( function (track) {
+                temp.name = track.name;
+                console.log(track.name);
+                temp.id = track.id;
+                temp.preview = track.preview_url;
+                track.artists.forEach( function (artist) {
+                    artists.push(artist.name);
+                    return artists;
+                });
+                songs.insert({
+                    "name": temp.name,
+                    "artists": temp.artists,
+                    "id": temp.id,
+                    "preview": temp.preview
+                })
+            })
+        }, function(err) {
+            console.log('Something went wrong!', err);
+        });
 
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist(playlistID)
