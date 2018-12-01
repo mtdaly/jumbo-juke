@@ -49,6 +49,7 @@ function addSongsFromPlaylist( playlistID ) {
             var artists = new Array();
             data.tracks.forEach( function (track) {
                 temp.name = track.name;
+                console.log(track.name);
                 temp.id = track.id;
                 temp.preview = track.preview_url;
                 track.artists.forEach( function (artist) {
