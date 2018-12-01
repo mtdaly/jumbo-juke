@@ -50,6 +50,7 @@ app.get("/", function (request, response) {
                     "id": song.track.id,
                     "preview": song.track.preview
                 });
+                artists = [];
             });
 
 
