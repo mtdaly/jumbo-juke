@@ -3,11 +3,11 @@ const express = require('express')
 var bodyParser = require('body-parser');
 var app = new express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-
-app.use(express.json());
-app.use(express.urlencoded());
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded());
+//
+// app.use(express.json());
+// app.use(express.urlencoded());
 
 // window.onSpotifyWebPlaybackSDKReady = () => {
 //   const token = 'a5dec87ebd744ebab9ff564c9fa2d802';
@@ -39,13 +39,13 @@ spotifyApi.clientCredentialsGrant().then(
 
 app.get("/", function (request, response) {
     console.log("entered get response function");
-    spotifyApi.getNewReleases({ limit : 5, offset: 0, country: 'SE' })
-        .then(function(data) {
-            console.log(data.body);
-            done();
-        }, function(err) {
-            console.log("Something went wrong!", err);
-        });
+    // spotifyApi.getNewReleases({ limit : 5, offset: 0, country: 'SE' })
+    //     .then(function(data) {
+    //         console.log(data.body);
+    //         done();
+    //     }, function(err) {
+    //         console.log("Something went wrong!", err);
+    //     });
     response.send("test");
 });
 
