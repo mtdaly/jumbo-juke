@@ -38,7 +38,7 @@ app.get("/", function (request, response) {
         .then(function(data) {
             var temp;
             var artists = new Array();
-            console.log(data.tracks)
+            console.log(data.tracks);
 
             // data.tracks.forEach( function (track) {
             //     temp.name = track.name;
@@ -55,12 +55,11 @@ app.get("/", function (request, response) {
             //         "id": temp.id,
             //         "preview": temp.preview
             //     })
-            })
+            response.send("this is a test")
+            });
         }, function(err) {
             console.log('Something went wrong!', err);
         });
-    response.send("this is a test")
-});
 
 var top100 = '5nPXGgfCxfRpJHGRY4sovK';
 
