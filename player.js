@@ -8,7 +8,6 @@ app.use(bodyParser.urlencoded());
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(cors());
 
 // window.onSpotifyWebPlaybackSDKReady = () => {
 //   const token = 'a5dec87ebd744ebab9ff564c9fa2d802';
