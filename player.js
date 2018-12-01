@@ -29,7 +29,7 @@ spotifyApi.clientCredentialsGrant().then(
         console.log('The access token is ' + data.body['access_token']);
 
         // Save the access token so that it's used in future calls
-        // spotifyApi.setAccessToken(data.body['access_token']);
+        spotifyApi.setAccessToken(data.body['access_token']);
     },
     function(err) {
         console.log('Something went wrong when retrieving an access token', err);
@@ -49,6 +49,7 @@ app.get("/", function (request, response) {
     response.send("test");
 });
 
+app.listen(process.env.PORT || 8888);
 
 
 //   // Error handling
