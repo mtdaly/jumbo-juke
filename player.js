@@ -34,12 +34,7 @@ spotifyApi.clientCredentialsGrant().then(
 
 
 app.get("/", function (request, response) {
-    response.send("this is a test")
-});
-
-var top100 = '5nPXGgfCxfRpJHGRY4sovK';
-
-spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
+    spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
         .then(function(data) {
             console.log('Some information about this playlist', data.body);
             var temp;
@@ -63,6 +58,12 @@ spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
         }, function(err) {
             console.log('Something went wrong!', err);
         });
+    response.send("this is a test")
+});
+
+var top100 = '5nPXGgfCxfRpJHGRY4sovK';
+
+
 
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist(playlistID)
