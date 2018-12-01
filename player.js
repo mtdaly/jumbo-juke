@@ -40,17 +40,17 @@ app.get("/", function (request, response) {
             console.log(data.body.tracks.items[1]);
             console.log("before foreach loop");
 
-            data.body.tracks.items.forEach(function (track) {
-                console.log(track.name);
-                track.artists.forEach(function (artist) {
-                    artists.push(artist.name);
-                    return artists;
-                });
+            data.body.tracks.items.forEach(function (song) {
+                console.log(song.track.name);
+                // song.track.artists.forEach(function (artist) {
+                //     artists.push(artist.name);
+                //     return artists;
+                // });
                 songs.insert({
-                    "name": track.name,
-                    "artists": artists,
-                    "id": track.id,
-                    "preview": track.preview
+                    "name": song.track.name,
+                    // "artists": artists,
+                    "id": song.track.id,
+                    "preview": song.track.preview
                 });
             });
 
