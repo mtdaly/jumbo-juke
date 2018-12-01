@@ -1,14 +1,54 @@
 var SpotifyWebApi = require('spotify-web-api-node');
 const express = require('express')
+var cors = require('cors');
+var bodyParser = require('body-parser');
+var app = new express();
 
-window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = 'a5dec87ebd744ebab9ff564c9fa2d802';
-  const player = new Spotify.Player({
-    name: 'Web Playback SDK Quick Start Player',
-    getOAuthToken: cb => { cb(token); }
-  });
-};
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(cors());
+
+// window.onSpotifyWebPlaybackSDKReady = () => {
+//   const token = 'a5dec87ebd744ebab9ff564c9fa2d802';
+//   const player = new Spotify.Player({
+//     name: 'Web Playback SDK Quick Start Player',
+//     getOAuthToken: cb => { cb(token); }
+//   });
+// };
+
+
+var spotifyApi = new SpotifyWebApi({
+    clientId: 'a5dec87ebd744ebab9ff564c9fa2d802',
+    clientSecret: 'b13366801081480c845c59802c249cc9'
+});
+
+spotifyApi.clientCredentialsGrant().then(
+    function(data) {
+        console.log('The access token expires in ' + data.body['expires_in']);
+        console.log('The access token is ' + data.body['access_token']);
+
+        // Save the access token so that it's used in future calls
+        spotifyApi.setAccessToken(data.body['access_token']);
+    },
+    function(err) {
+        console.log('Something went wrong when retrieving an access token', err);
+    }
+);
+
+
+app.get("/", function (request, response) {
+    spotifyApi.getNewReleases({ limit : 5, offset: 0, country: 'SE' })
+        .then(function(data) {
+            console.log(data.body);
+            done();
+        }, function(err) {
+            console.log("Something went wrong!", err);
+        });
+    response.send("test");
+});
 
 
 
