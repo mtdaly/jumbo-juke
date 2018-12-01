@@ -38,21 +38,23 @@ app.get("/", function (request, response) {
         .then(function(data) {
             var temp;
             var artists = new Array();
-            data.tracks.forEach( function (track) {
-                temp.name = track.name;
-                console.log(track.name);
-                temp.id = track.id;
-                temp.preview = track.preview_url;
-                track.artists.forEach( function (artist) {
-                    artists.push(artist.name);
-                    return artists;
-                });
-                songs.insert({
-                    "name": temp.name,
-                    "artists": temp.artists,
-                    "id": temp.id,
-                    "preview": temp.preview
-                })
+            console.log(data.tracks)
+
+            // data.tracks.forEach( function (track) {
+            //     temp.name = track.name;
+            //     console.log(track.name);
+            //     temp.id = track.id;
+            //     temp.preview = track.preview_url;
+            //     track.artists.forEach( function (artist) {
+            //         artists.push(artist.name);
+            //         return artists;
+            //     });
+            //     songs.insert({
+            //         "name": temp.name,
+            //         "artists": temp.artists,
+            //         "id": temp.id,
+            //         "preview": temp.preview
+            //     })
             })
         }, function(err) {
             console.log('Something went wrong!', err);
