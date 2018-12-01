@@ -37,7 +37,7 @@ app.get("/", function (request, response) {
     spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
         .then(function (data) {
             var artists = new Array();
-            console.log(data.body.tracks.items);
+            console.log(data.body.tracks.items[1]);
 
             // data.body.tracks.items(function (track) {
             //     console.log(track.name);
