@@ -37,13 +37,12 @@ app.get("/", function (request, response) {
     spotifyApi.getPlaylist('37i9dQZEVXbLRQDuF5jeBp')
         .then(function (data) {
             var artists = new Array();
-            console.log(data.body.tracks.items[1]);
+            console.log(data.body.tracks.items[1].artists[1]);
             console.log("before foreach loop");
 
             data.body.tracks.items.forEach(function (song) {
                 console.log(song.track.name);
                 song.track.artists.forEach(function (artist) {
-                    console.log(artist);
                     // artists.push(artist.name);
                     // return artists;
                 });
