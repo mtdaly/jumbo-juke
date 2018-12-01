@@ -68,7 +68,6 @@ var top100 = '5nPXGgfCxfRpJHGRY4sovK';
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist(playlistID)
         .then(function(data) {
-            console.log('Some information about this playlist', data.body);
             var temp;
             var artists = new Array();
             data.tracks.forEach( function (track) {
