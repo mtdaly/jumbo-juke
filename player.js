@@ -36,26 +36,22 @@ spotifyApi.clientCredentialsGrant().then(
 app.get("/", function (request, response) {
     spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
         .then(function(data) {
-            var temp;
             var artists = new Array();
             console.log(data);
             console.log(data.body.tracks.items);
 
-            // data.tracks.forEach( function (track) {
-            //     temp.name = track.name;
-            //     console.log(track.name);
-            //     temp.id = track.id;
-            //     temp.preview = track.preview_url;
-            //     track.artists.forEach( function (artist) {
-            //         artists.push(artist.name);
-            //         return artists;
-            //     });
-            //     songs.insert({
-            //         "name": temp.name,
-            //         "artists": temp.artists,
-            //         "id": temp.id,
-            //         "preview": temp.preview
-            //     })
+            data.body.tracks.items( function (track) {
+                console.log(track.name);
+                track.artists.forEach( function (artist) {
+                    artists.push(artist.name);
+                    return artists;
+                });
+                songs.insert({
+                    "name": track.name,
+                    "artists": artists,
+                    "id": track.id,
+                    "preview": track.preview
+                });
             response.send("this is a test")
             });
         }, function(err) {
