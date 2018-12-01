@@ -35,12 +35,12 @@ spotifyApi.clientCredentialsGrant().then(
 
 app.get("/", function (request, response) {
     spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
-        .then(function(data) {
+        .then(function (data) {
             var artists = new Array();
 
-            data.body.tracks.items( function (track) {
+            data.body.tracks.items(function (track) {
                 console.log(track.name);
-                track.artists.forEach( function (artist) {
+                track.artists.forEach(function (artist) {
                     artists.push(artist.name);
                     return artists;
                 });
@@ -50,14 +50,15 @@ app.get("/", function (request, response) {
                     "id": track.id,
                     "preview": track.preview
                 });
-            response.send("this is a test")
+                response.send("this is a test")
             });
-        }, function(err) {
+
+        }, function (err) {
             console.log('Something went wrong!', err);
         });
+});
 
 var top100 = '5nPXGgfCxfRpJHGRY4sovK';
-
 
 
 function addSongsFromPlaylist( playlistID ) {
