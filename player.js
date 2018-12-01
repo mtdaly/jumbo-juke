@@ -1,6 +1,5 @@
 var SpotifyWebApi = require('spotify-web-api-node');
 const express = require('express')
-var cors = require('cors');
 var bodyParser = require('body-parser');
 var app = new express();
 
