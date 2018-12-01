@@ -39,7 +39,6 @@ app.get("/", function (request, response) {
             var temp;
             var artists = new Array();
             console.log(data);
-            console.log(JSON.stringify(data));
             console.log(JSON.stringify(data.tracks));
 
             // data.tracks.forEach( function (track) {
