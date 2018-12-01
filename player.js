@@ -39,12 +39,11 @@ spotifyApi.clientCredentialsGrant().then(
 
 app.get("/", function (request, response) {
     console.log("entered get response function");
-    spotifyApi.getNewReleases({ limit : 5, offset: 0, country: 'SE' })
+    spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
         .then(function(data) {
-            console.log(data.body);
-            done();
+            console.log('Some information about this playlist', data.body);
         }, function(err) {
-            console.log("Something went wrong!", err);
+            console.log('Something went wrong!', err);
         });
     response.send("test");
 });
