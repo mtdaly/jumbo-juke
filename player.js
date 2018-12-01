@@ -10,9 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 var mongojs = require('mongojs');
+var mongoURL = process.env.MONGODB_URI;
 var db = mongojs(mongoURL);
 var songs = db.collection('songs');
-
 
 var spotifyApi = new SpotifyWebApi({
     clientId: 'a5dec87ebd744ebab9ff564c9fa2d802',
