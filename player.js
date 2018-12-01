@@ -9,6 +9,11 @@ app.use(bodyParser.urlencoded());
 app.use(express.json());
 app.use(express.urlencoded());
 
+var mongojs = require('mongojs');
+var db = mongojs(mongoURL);
+var songs = db.collection('songs');
+
+
 // window.onSpotifyWebPlaybackSDKReady = () => {
 //   const token = 'a5dec87ebd744ebab9ff564c9fa2d802';
 //   const player = new Spotify.Player({
@@ -38,15 +43,40 @@ spotifyApi.clientCredentialsGrant().then(
 
 
 app.get("/", function (request, response) {
-    console.log("entered get response function");
-    spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
+    response.send("this is a test")
+});
+
+var top100 = '5nPXGgfCxfRpJHGRY4sovK';
+
+function addSongsFromPlaylist( playlistID ) {
+    spotifyApi.getPlaylist(playlistID)
         .then(function(data) {
             console.log('Some information about this playlist', data.body);
-            response.send(JSON.stringify(data.body));
+            var temp;
+            var artists = new Array();
+            data.tracks.forEach( function (track) {
+                temp.name = track.name;
+                temp.id = track.id;
+                temp.preview = track.preview_url;
+                track.artists.forEach( function (artist) {
+                    artists.push(artist.name);
+                    return artists;
+                });
+                songs.insert({
+                    "name": temp.name,
+                    "artists": temp.artists,
+                    "id": temp.id,
+                    "preview": temp.preview
+                })
+            })
         }, function(err) {
             console.log('Something went wrong!', err);
         });
-});
+}
+
+
+
+
 
 app.listen(process.env.PORT || 8888);
 
