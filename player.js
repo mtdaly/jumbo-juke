@@ -3,11 +3,11 @@ const express = require('express')
 var bodyParser = require('body-parser');
 var app = new express();
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded());
-//
-// app.use(express.json());
-// app.use(express.urlencoded());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
+app.use(express.json());
+app.use(express.urlencoded());
 
 // window.onSpotifyWebPlaybackSDKReady = () => {
 //   const token = 'a5dec87ebd744ebab9ff564c9fa2d802';
@@ -42,10 +42,10 @@ app.get("/", function (request, response) {
     spotifyApi.getPlaylist('5nPXGgfCxfRpJHGRY4sovK')
         .then(function(data) {
             console.log('Some information about this playlist', data.body);
+            response.send(JSON.stringify(data.body));
         }, function(err) {
             console.log('Something went wrong!', err);
         });
-    response.send("test");
 });
 
 app.listen(process.env.PORT || 8888);
