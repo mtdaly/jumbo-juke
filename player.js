@@ -51,9 +51,10 @@ app.get("/", function (request, response) {
             //         "id": track.id,
             //         "preview": track.preview
             //     });
-            //     response.send("this is a test")
             // });
 
+
+            response.send("this is a test")
         }, function (err) {
             console.log('Something went wrong!', err);
         });
