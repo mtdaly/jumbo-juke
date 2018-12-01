@@ -43,12 +43,12 @@ app.get("/", function (request, response) {
             data.body.tracks.items.forEach(function (song) {
                 console.log(song.track.name);
                 song.track.artists.forEach(function (artist) {
-                    // artists.push(artist.name);
-                    // return artists;
+                    artists.push(artist.name);
+                    return artists;
                 });
                 songs.insert({
                     "name": song.track.name,
-                    // "artists": artists,
+                    "artists": artists,
                     "id": song.track.id,
                     "preview": song.track.preview
                 });
