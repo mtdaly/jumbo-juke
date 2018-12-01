@@ -10,9 +10,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 };
 
 
-var SpotifyWebApi = require('spotify-web-api-node');
-
-
 
 
 //   // Error handling
