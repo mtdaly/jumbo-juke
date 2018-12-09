@@ -45,26 +45,33 @@ app.get("/", function (request, response) {
                     return artists;
                 });
 
-                var features = new Array();
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
-                        // console.log(data);
-                        features = JSON.parse(data.body);
-                        return features;
+                        console.log(data);
+                         songs.insert({
+                            "name": song.track.name,
+                            "artists": artists,
+                            "id": song.track.id,
+                            "preview": song.track.preview,
+                            "tempo": data.body.tempo,
+                            "dance": data.body.dance,
+                            "acoustic": data.body.acoustic,
+                            "energy": data.body.energy
+                        });
                     }, function (err) {
                         done(err);
                     });
-                console.log(features);
-                songs.insert({
-                    "name": song.track.name,
-                    "artists": artists,
-                    "id": song.track.id,
-                    "preview": song.track.preview,
-                    "tempo": features.tempo,
-                    "dance": features.dance,
-                    "acoustic": features.acoustic,
-                    "energy": features.energy
-                });
+                // console.log(features);
+                // songs.insert({
+                //     "name": song.track.name,
+                //     "artists": artists,
+                //     "id": song.track.id,
+                //     "preview": song.track.preview,
+                //     "tempo": features.tempo,
+                //     "dance": features.dance,
+                //     "acoustic": features.acoustic,
+                //     "energy": features.energy
+                // });
                 artists = [];
             });
 
