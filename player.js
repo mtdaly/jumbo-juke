@@ -87,10 +87,10 @@ app.get("/getPreview", function (request, response) {
     songs.find().toArray( function (err, data) {
         data.forEach( function (song) {
             console.log(song.name);
-            sum += math.abs(song.tempo - tempo) / 150;
-            sum += math.abs(song.dance - dance);
-            sum += math.abs(song.acoustic - acoustic);
-            sum += math.abs(song.energy - energy);
+            sum += Math.abs(song.tempo - tempo) / 150;
+            sum += Math.abs(song.dance - dance);
+            sum += Math.abs(song.acoustic - acoustic);
+            sum += Math.abs(song.energy - energy);
 
             song.matchQuality = sum;
             sum = 0;
@@ -99,7 +99,6 @@ app.get("/getPreview", function (request, response) {
     });
 
     songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
-        console.log(data);
         response.send(data[0].preview);
     });
 
