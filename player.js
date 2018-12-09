@@ -39,7 +39,7 @@ app.get("/", function (request, response) {
             var artists = new Array();
 
             data.body.tracks.items.forEach(function (song) {
-                console.log(song.track.name);
+                // console.log(song.track.name);
                 song.track.artists.forEach(function (artist) {
                     artists.push(artist.name);
                     return artists;
@@ -48,7 +48,7 @@ app.get("/", function (request, response) {
                 var tempo, dance, acoustic, energy;
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
-                        console.log(JSON.stringify(data));
+                        console.log(data);
                         tempo = data.tempo;
                         dance = data.danceability;
                         acoustic = data.acousticness;
