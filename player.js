@@ -45,11 +45,11 @@ app.get("/", function (request, response) {
                     return artists;
                 });
 
-                var features;
+                var features = new Array();
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
                         // console.log(data);
-                        features = data.body;
+                        features = JSON.parse(data.body);
                         return features;
                     }, function (err) {
                         done(err);
