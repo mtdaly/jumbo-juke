@@ -1,5 +1,5 @@
 var SpotifyWebApi = require('spotify-web-api-node');
-const express = require('express')
+const express = require('express');
 var bodyParser = require('body-parser');
 var app = new express();
 var cors = require('cors');
@@ -13,6 +13,7 @@ app.use(express.urlencoded());
 app.use(cors());
 
 var mongojs = require('mongojs');
+ObjectId = require('mongodb').ObjectID;
 var mongoURL = process.env.MONGODB_URI;
 var db = mongojs(mongoURL);
 var songs = db.collection('songs');
@@ -88,7 +89,7 @@ app.get("/getPreview", function (request, response) {
         data.forEach( function (song) {
             console.log(song.name);
             console.log(song.matchQuality);
-            console.log(song._id);
+            console.log(typeof(song._id));
             sum += Math.abs(song.tempo - tempo) / 150;
             sum += Math.abs(song.dance - dance);
             sum += Math.abs(song.acoustic - acoustic);
@@ -97,7 +98,7 @@ app.get("/getPreview", function (request, response) {
             console.log(sum);
             songs.update(
                 { _id: ObjectId(song._id) },
-                { "$set": { matchQuality: sum }}
+                { matchQuality: sum }
             );
 
             sum = 0;
