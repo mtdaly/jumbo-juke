@@ -35,11 +35,12 @@ spotifyApi.clientCredentialsGrant().then(
 
 app.get("/", function (request, response) {
     addSongsFromPlaylist( top50 );
+    addSongsFromPlaylist(spotifySingles);
     response.send("this is a test");
 });
 
-top50 = '37i9dQZEVXbLRQDuF5jeBp';
-spotifySingles = '37i9dQZF1DWTUm9HjVUKnL';
+var top50 = '37i9dQZEVXbLRQDuF5jeBp';
+var spotifySingles = '37i9dQZF1DWTUm9HjVUKnL';
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
