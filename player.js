@@ -80,7 +80,7 @@ function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
             data.body.tracks.items.forEach(function (song) {
-                sleep(500);
+                sleep(50);
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
                         if (song.track.preview_url != null) {
