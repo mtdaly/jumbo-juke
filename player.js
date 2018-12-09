@@ -51,7 +51,8 @@ function getCredentials() {
 app.get("/", function (request, response) {
     console.log("entered get callback");
     getCredentials();
-    if (songs.find().count() === 0) {
+    var count = songs.count();
+    if (count === 0) {
         console.log("Adding songs to empty collection");
         addSongsFromPlaylist(top50);
         addSongsFromPlaylist(spotifySingles);
