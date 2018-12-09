@@ -51,7 +51,9 @@ function getCredentials() {
 app.get("/", function (request, response) {
     console.log("entered get callback");
     getCredentials();
-    // songs.count();
+    songs.count().then((count) => {
+        console.log(count);
+    });
     // if (count === 0) {
         console.log("Adding songs to empty collection");
         addSongsFromPlaylist(top50);
