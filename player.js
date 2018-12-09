@@ -77,19 +77,25 @@ app.get("/getPreview", function (request, response) {
     var energy = Number(request.query.energy);
     var sum = 0;
 
+    console.log(tempo);
+    console.log(dance);
+
     if (tempo == NaN || dance == NaN || acoustic == NaN || energy == NaN) {
         response.send("Bad Request");
     }
 
-    songs.find().forEach( function (song) {
-        console.log(song.name);
-        sum += math.abs(song.tempo - tempo) / 150;
-        sum += math.abs(song.dance - dance);
-        sum += math.abs(song.acoustic - acoustic);
-        sum += math.abs(song.energy - energy);
+    songs.find().toArray( function (err, data) {
+        data.forEach( function (song) {
+            console.log(song.name);
+            sum += math.abs(song.tempo - tempo) / 150;
+            sum += math.abs(song.dance - dance);
+            sum += math.abs(song.acoustic - acoustic);
+            sum += math.abs(song.energy - energy);
 
-        song.matchQuality = sum;
-        sum = 0;
+            song.matchQuality = sum;
+            sum = 0;
+
+        });
     });
 
     songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
