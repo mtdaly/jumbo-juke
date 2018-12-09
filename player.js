@@ -54,8 +54,8 @@ app.get("/", function (request, response) {
                             "id": song.track.id,
                             "preview": song.track.preview,
                             "tempo": data.body.tempo,
-                            "dance": data.body.dance,
-                            "acoustic": data.body.acoustic,
+                            "dance": data.body.danceability,
+                            "acoustic": data.body.acousticness,
                             "energy": data.body.energy
                         });
                     }, function (err) {
