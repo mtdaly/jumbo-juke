@@ -51,12 +51,12 @@ function getCredentials() {
 app.get("/", function (request, response) {
     console.log("entered get callback");
     getCredentials();
-    var count = songs.count();
-    if (count === 0) {
+    songs.count();
+    // if (count === 0) {
         console.log("Adding songs to empty collection");
         addSongsFromPlaylist(top50);
         addSongsFromPlaylist(spotifySingles);
-    }
+    // }
     response.send("this is a test");
 });
 
