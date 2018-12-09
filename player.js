@@ -70,9 +70,33 @@ function addSongs() {
 
 //// REQUEST HANDLING ////
 
+app.get("/getPreview", function (request, response) {
+    var tempo = request.query.tempo;
+    var dance = request.query.dance;
+    var acoustic = request.query.acoustic;
+    var energy = request.query.energy;
+    var sum = 0;
+    songs.find().forEach( function (song) {
+        console.log(song.name);
+        sum += math.abs(song.tempo - tempo) / 150;
+        sum += math.abs(song.dance - dance);
+        sum += math.abs(song.acoustic - acoustic);
+        sum += math.abs(song.energy - energy);
+
+        song.matchQuality = sum;
+        sum = 0;
+    });
+
+    songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
+        console.log(data);
+        response.send(data[0].preview);
+    });
+
+});
+
+
 app.get("/", function (request, response) {
-    console.log("entered get callback");
-    response.send("this is a test");
+    response.send("testing...");
 });
 
 
