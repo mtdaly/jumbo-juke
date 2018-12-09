@@ -25,7 +25,7 @@ var spotifyApi = new SpotifyWebApi({
     clientSecret: 'b13366801081480c845c59802c249cc9'
 });
 
-// getCredentials();
+addSongs();
 
 
 //// API MANAGEMENT ////
@@ -69,7 +69,6 @@ function addSongs() {
 
 app.get("/", function (request, response) {
     console.log("entered get callback");
-    addSongs();
     response.send("this is a test");
 });
 
@@ -80,7 +79,6 @@ function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
             data.body.tracks.items.forEach(function (song) {
-                sleep(50);
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
                         if (song.track.preview_url != null) {
@@ -104,40 +102,13 @@ function addSongsFromPlaylist( playlistID ) {
         });
 }
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > milliseconds){
-            break;
-        }
-    }
-}
-
-
+// function sleep(milliseconds) {
+//     var start = new Date().getTime();
+//     for (var i = 0; i < 1e7; i++) {
+//         if ((new Date().getTime() - start) > milliseconds){
+//             break;
+//         }
+//     }
+// }
 
 app.listen(process.env.PORT || 8888);
-
-
-//   // Error handling
-//   player.addListener('initialization_error', ({ message }) => { console.error(message); });
-//   player.addListener('authentication_error', ({ message }) => { console.error(message); });
-//   player.addListener('account_error', ({ message }) => { console.error(message); });
-//   player.addListener('playback_error', ({ message }) => { console.error(message); });
-
-//   // Playback status updates
-//   player.addListener('player_state_changed', state => { console.log(state); });
-
-//   // Ready
-//   player.addListener('ready', ({ device_id }) => {
-//     console.log('Ready with Device ID', device_id);
-//   });
-
-//   // Not Ready
-//   player.addListener('not_ready', ({ device_id }) => {
-//     console.log('Device ID has gone offline', device_id);
-//   });
-
-//   // Connect to the player!
-//   player.connect();
-
-
