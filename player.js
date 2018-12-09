@@ -44,6 +44,18 @@ app.get("/", function (request, response) {
                     artists.push(artist.name);
                     return artists;
                 });
+
+                var tempo, dance, acoustic, energy;
+                spotifyApi.getAudioFeaturesForTrack(song.track.id)
+                    .then( function (data) {
+                        console.log(JSON.stringify(data));
+                        tempo = data.tempo;
+                        dance = data.danceability;
+                        acoustic = data.acousticness;
+                        energy = data.energy;
+                    }, function (err) {
+                        done(err);
+                    });
                 songs.insert({
                     "name": song.track.name,
                     "artists": artists,
