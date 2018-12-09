@@ -127,7 +127,8 @@ function addSongsFromPlaylist( playlistID ) {
                                 "tempo": data.body.tempo,
                                 "dance": data.body.danceability,
                                 "acoustic": data.body.acousticness,
-                                "energy": data.body.energy
+                                "energy": data.body.energy,
+                                "matchQuality": 100
                             });
                         }
                     }, function (err) {
