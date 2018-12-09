@@ -56,7 +56,7 @@ function addSongsFromPlaylist( playlistID ) {
                             "name": song.track.name,
                             "artists": artists,
                             "id": song.track.id,
-                            "preview": song.track.preview,
+                            "preview": song.track.preview_url,
                             "tempo": data.body.tempo,
                             "dance": data.body.danceability,
                             "acoustic": data.body.acousticness,
