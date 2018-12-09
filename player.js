@@ -25,7 +25,7 @@ var spotifyApi = new SpotifyWebApi({
     clientSecret: 'b13366801081480c845c59802c249cc9'
 });
 
-getCredentials();
+// getCredentials();
 
 
 //// API MANAGEMENT ////
@@ -51,9 +51,6 @@ function getCredentials() {
 app.get("/", function (request, response) {
     console.log("entered get callback");
     getCredentials();
-    songs.count().then((count) => {
-        console.log(count);
-    });
     // if (count === 0) {
         console.log("Adding songs to empty collection");
         addSongsFromPlaylist(top50);
