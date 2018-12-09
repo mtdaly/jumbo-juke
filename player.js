@@ -45,26 +45,25 @@ app.get("/", function (request, response) {
                     return artists;
                 });
 
-                var tempo, dance, acoustic, energy;
+                var features;
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
                         // console.log(data);
-                        tempo = data.body.tempo;
-                        dance = data.body.danceability;
-                        acoustic = data.body.acousticness;
-                        energy = data.body.energy;
+                        features = data.body;
+                        return features;
                     }, function (err) {
                         done(err);
                     });
+                console.log(features);
                 songs.insert({
                     "name": song.track.name,
                     "artists": artists,
                     "id": song.track.id,
                     "preview": song.track.preview,
-                    "tempo": tempo,
-                    "dance": dance,
-                    "acoustic": acoustic,
-                    "energy": energy
+                    "tempo": features.tempo,
+                    "dance": features.dance,
+                    "acoustic": features.acoustic,
+                    "energy": features.energy
                 });
                 artists = [];
             });
