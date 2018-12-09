@@ -87,6 +87,7 @@ app.get("/getPreview", function (request, response) {
     songs.find().toArray( function (err, data) {
         data.forEach( function (song) {
             console.log(song.name);
+            console.log(song.matchQuality);
             sum += Math.abs(song.tempo - tempo) / 150;
             sum += Math.abs(song.dance - dance);
             sum += Math.abs(song.acoustic - acoustic);
@@ -131,6 +132,7 @@ function addSongsFromPlaylist( playlistID ) {
                                 "dance": data.body.danceability,
                                 "acoustic": data.body.acousticness,
                                 "energy": data.body.energy,
+                                "matchQuality": 100
                             });
                         }
                     }, function (err) {
