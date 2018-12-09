@@ -66,7 +66,6 @@ function addSongs() {
 
 app.get("/", function (request, response) {
     console.log("entered get callback");
-    console.log(db.songs.count());
     addSongs();
     response.send("this is a test");
 });
