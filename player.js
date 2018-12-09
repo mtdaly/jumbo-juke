@@ -45,15 +45,27 @@ function getCredentials() {
     );
 }
 
+function addSongs() {
+    spotifyApi.clientCredentialsGrant().then(
+        function (data) {
+            console.log('The access token expires in ' + data.body['expires_in']);
+            console.log('The access token is ' + data.body['access_token']);
+
+            // Save the access token so that it's used in future calls
+            spotifyApi.setAccessToken(data.body['access_token']);
+            addSongsFromPlaylist(top50);
+            addSongsFromPlaylist(spotifySingles);
+        },
+        function (err) {
+            console.log('Something went wrong when retrieving an access token', err);
+        }
+    );
+}
 
 //// REQUEST HANDLING ////
 
 app.get("/", function (request, response) {
     console.log("entered get callback");
-    getCredentials().then( function () {
-        addSongsFromPlaylist(top50);
-        addSongsFromPlaylist(spotifySingles);
-    });
     response.send("this is a test");
 });
 
