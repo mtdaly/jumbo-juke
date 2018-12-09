@@ -71,11 +71,16 @@ function addSongs() {
 //// REQUEST HANDLING ////
 
 app.get("/getPreview", function (request, response) {
-    var tempo = request.query.tempo;
-    var dance = request.query.dance;
-    var acoustic = request.query.acoustic;
-    var energy = request.query.energy;
+    var tempo = Number(request.query.tempo);
+    var dance = Number(request.query.dance);
+    var acoustic = Number(request.query.acoustic);
+    var energy = Number(request.query.energy);
     var sum = 0;
+
+    if (tempo == NaN || dance == NaN || acoustic == NaN || energy == NaN) {
+        response.send("Bad Request");
+    }
+
     songs.find().forEach( function (song) {
         console.log(song.name);
         sum += math.abs(song.tempo - tempo) / 150;
