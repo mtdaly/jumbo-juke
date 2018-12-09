@@ -46,6 +46,7 @@ function getCredentials() {
 }
 
 function addSongs() {
+    songs.remove({});
     spotifyApi.clientCredentialsGrant().then(
         function (data) {
             console.log('The access token expires in ' + data.body['expires_in']);
@@ -76,20 +77,19 @@ app.get("/", function (request, response) {
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
-            var artists = new Array();
+            // var artists = new Array();
 
             data.body.tracks.items.forEach(function (song) {
-                song.track.artists.forEach(function (artist) {
-                    artists.push(artist.name);
-                    return artists;
-                });
+                // song.track.artists.forEach(function (artist) {
+                //     artists.push(artist.name);
+                //     return artists;
+                // });
 
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
                         if (song.track.preview_url != null) {
                             songs.insert({
                                 "name": song.track.name,
-                                "artists": artists,
                                 "id": song.track.id,
                                 "preview": song.track.preview_url,
                                 "tempo": data.body.tempo,
