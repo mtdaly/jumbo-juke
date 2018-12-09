@@ -9,6 +9,8 @@ app.use(bodyParser.urlencoded());
 app.use(express.json());
 app.use(express.urlencoded());
 
+app.use(cors);
+
 var mongojs = require('mongojs');
 var mongoURL = process.env.MONGODB_URI;
 var db = mongojs(mongoURL);
