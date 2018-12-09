@@ -96,8 +96,8 @@ app.get("/getPreview", function (request, response) {
 
             console.log(sum);
             songs.update(
-                { _id: song._id },
-                { matchQuality: sum }
+                { _id: ObjectId(song._id) },
+                { "$set": { matchQuality: sum }}
             );
 
             sum = 0;
