@@ -34,12 +34,17 @@ spotifyApi.clientCredentialsGrant().then(
 
 
 app.get("/", function (request, response) {
-    spotifyApi.getPlaylist('37i9dQZEVXbLRQDuF5jeBp')
+    addSongsFromPlaylist( top50 );
+    response.send("this is a test");
+});
+
+top50 = '37i9dQZEVXbLRQDuF5jeBp';
+function addSongsFromPlaylist( playlistID ) {
+    spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
             var artists = new Array();
 
             data.body.tracks.items.forEach(function (song) {
-                // console.log(song.track.name);
                 song.track.artists.forEach(function (artist) {
                     artists.push(artist.name);
                     return artists;
@@ -47,7 +52,6 @@ app.get("/", function (request, response) {
 
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
-                        console.log(data);
                          songs.insert({
                             "name": song.track.name,
                             "artists": artists,
@@ -61,50 +65,10 @@ app.get("/", function (request, response) {
                     }, function (err) {
                         done(err);
                     });
-                // console.log(features);
-                // songs.insert({
-                //     "name": song.track.name,
-                //     "artists": artists,
-                //     "id": song.track.id,
-                //     "preview": song.track.preview,
-                //     "tempo": features.tempo,
-                //     "dance": features.dance,
-                //     "acoustic": features.acoustic,
-                //     "energy": features.energy
-                // });
                 artists = [];
             });
 
-
-            response.send("this is a test")
         }, function (err) {
-            console.log('Something went wrong!', err);
-        });
-});
-
-
-function addSongsFromPlaylist( playlistID ) {
-    spotifyApi.getPlaylist(playlistID)
-        .then(function(data) {
-            var temp;
-            var artists = new Array();
-            data.tracks.forEach( function (track) {
-                temp.name = track.name;
-                console.log(track.name);
-                temp.id = track.id;
-                temp.preview = track.preview_url;
-                track.artists.forEach( function (artist) {
-                    artists.push(artist.name);
-                    return artists;
-                });
-                songs.insert({
-                    "name": temp.name,
-                    "artists": temp.artists,
-                    "id": temp.id,
-                    "preview": temp.preview
-                })
-            })
-        }, function(err) {
             console.log('Something went wrong!', err);
         });
 }
