@@ -39,6 +39,7 @@ app.get("/", function (request, response) {
 });
 
 top50 = '37i9dQZEVXbLRQDuF5jeBp';
+spotifySingles = '37i9dQZF1DWTUm9HjVUKnL';
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
@@ -52,16 +53,18 @@ function addSongsFromPlaylist( playlistID ) {
 
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
-                         songs.insert({
-                            "name": song.track.name,
-                            "artists": artists,
-                            "id": song.track.id,
-                            "preview": song.track.preview_url,
-                            "tempo": data.body.tempo,
-                            "dance": data.body.danceability,
-                            "acoustic": data.body.acousticness,
-                            "energy": data.body.energy
-                        });
+                        if (song.track.preview_url != null) {
+                            songs.insert({
+                                "name": song.track.name,
+                                "artists": artists,
+                                "id": song.track.id,
+                                "preview": song.track.preview_url,
+                                "tempo": data.body.tempo,
+                                "dance": data.body.danceability,
+                                "acoustic": data.body.acousticness,
+                                "energy": data.body.energy
+                            });
+                        }
                     }, function (err) {
                         done(err);
                     });
