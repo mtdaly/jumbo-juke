@@ -50,12 +50,10 @@ function getCredentials() {
 
 app.get("/", function (request, response) {
     console.log("entered get callback");
-    getCredentials();
-    // if (count === 0) {
-        console.log("Adding songs to empty collection");
+    getCredentials().then( function () {
         addSongsFromPlaylist(top50);
         addSongsFromPlaylist(spotifySingles);
-    // }
+    });
     response.send("this is a test");
 });
 
