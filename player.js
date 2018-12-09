@@ -92,9 +92,12 @@ app.get("/getPreview", function (request, response) {
             sum += Math.abs(song.acoustic - acoustic);
             sum += Math.abs(song.energy - energy);
 
-            song.matchQuality = sum;
-            sum = 0;
+            songs.update(
+                { _id: song._id },
+                { "$set": { "matchQuality": sum }}
+            );
 
+            sum = 0;
         });
     });
 
@@ -128,7 +131,6 @@ function addSongsFromPlaylist( playlistID ) {
                                 "dance": data.body.danceability,
                                 "acoustic": data.body.acousticness,
                                 "energy": data.body.energy,
-                                "matchQuality": 100
                             });
                         }
                     }, function (err) {
