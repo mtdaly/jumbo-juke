@@ -47,20 +47,22 @@ function getCredentials() {
 
 function addSongs() {
     songs.remove({});
-    // spotifyApi.clientCredentialsGrant().then(
-    //     function (data) {
-    //         console.log('The access token expires in ' + data.body['expires_in']);
-    //         console.log('The access token is ' + data.body['access_token']);
-    //
-    //         // Save the access token so that it's used in future calls
-    //         spotifyApi.setAccessToken(data.body['access_token']);
-    //         addSongsFromPlaylist(top50);
-    //         addSongsFromPlaylist(spotifySingles);
-    //     },
-    //     function (err) {
-    //         console.log('Something went wrong when retrieving an access token', err);
-    //     }
-    // );
+    spotifyApi.clientCredentialsGrant().then(
+        function (data) {
+            console.log('The access token expires in ' + data.body['expires_in']);
+            console.log('The access token is ' + data.body['access_token']);
+
+            // Save the access token so that it's used in future calls
+            spotifyApi.setAccessToken(data.body['access_token']);
+
+
+            addSongsFromPlaylist(top50);
+            addSongsFromPlaylist(spotifySingles);
+        },
+        function (err) {
+            console.log('Something went wrong when retrieving an access token', err);
+        }
+    );
 }
 
 //// REQUEST HANDLING ////
@@ -77,14 +79,8 @@ app.get("/", function (request, response) {
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
-            // var artists = new Array();
-
             data.body.tracks.items.forEach(function (song) {
-                // song.track.artists.forEach(function (artist) {
-                //     artists.push(artist.name);
-                //     return artists;
-                // });
-
+                sleep(500);
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
                         if (song.track.preview_url != null) {
@@ -101,12 +97,20 @@ function addSongsFromPlaylist( playlistID ) {
                     }, function (err) {
                         console.log(err);
                     });
-                artists = [];
             });
 
         }, function (err) {
             console.log('Something went wrong!', err);
         });
+}
+
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+            break;
+        }
+    }
 }
 
 
