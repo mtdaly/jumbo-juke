@@ -48,11 +48,11 @@ app.get("/", function (request, response) {
                 var tempo, dance, acoustic, energy;
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
-                        console.log(data);
-                        tempo = data.tempo;
-                        dance = data.danceability;
-                        acoustic = data.acousticness;
-                        energy = data.energy;
+                        // console.log(data);
+                        tempo = data.body.tempo;
+                        dance = data.body.danceability;
+                        acoustic = data.body.acousticness;
+                        energy = data.body.energy;
                     }, function (err) {
                         done(err);
                     });
@@ -60,7 +60,11 @@ app.get("/", function (request, response) {
                     "name": song.track.name,
                     "artists": artists,
                     "id": song.track.id,
-                    "preview": song.track.preview
+                    "preview": song.track.preview,
+                    "tempo": tempo,
+                    "dance": dance,
+                    "acoustic": acoustic,
+                    "energy": energy
                 });
                 artists = [];
             });
