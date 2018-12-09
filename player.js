@@ -88,6 +88,7 @@ app.get("/getPreview", function (request, response) {
         data.forEach( function (song) {
             console.log(song.name);
             console.log(song.matchQuality);
+            console.log(song._id);
             sum += Math.abs(song.tempo - tempo) / 150;
             sum += Math.abs(song.dance - dance);
             sum += Math.abs(song.acoustic - acoustic);
