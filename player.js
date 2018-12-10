@@ -78,24 +78,17 @@ app.get("/getPreview", function (request, response) {
     var energy = Number(request.query.energy);
     var sum = 0;
 
-    console.log(tempo);
-    console.log(dance);
-
     if (tempo == NaN || dance == NaN || acoustic == NaN || energy == NaN) {
         response.send("Bad Request");
     }
 
     songs.find().toArray( function (err, data) {
         data.forEach( function (song) {
-            console.log(song.name);
-            console.log(song.matchQuality);
-            console.log(song._id);
             sum += Math.abs(song.tempo - tempo) / 150;
             sum += Math.abs(song.dance - dance);
             sum += Math.abs(song.acoustic - acoustic);
             sum += Math.abs(song.energy - energy);
 
-            console.log(sum);
             songs.update(
                 { _id: song._id },
                 { $set: { "matchQuality": sum } }
