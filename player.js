@@ -22,6 +22,7 @@ var songs = db.collection('songs');
 var top50 = '37i9dQZEVXbLRQDuF5jeBp';
 var spotifySingles = '37i9dQZF1DWTUm9HjVUKnL';
 
+
 //// START ROUTINE ////
 
 var spotifyApi = new SpotifyWebApi({
@@ -31,23 +32,7 @@ var spotifyApi = new SpotifyWebApi({
 
 addSongs();
 
-
 //// API MANAGEMENT ////
-
-function getCredentials() {
-    spotifyApi.clientCredentialsGrant().then(
-        function (data) {
-            console.log('The access token expires in ' + data.body['expires_in']);
-            console.log('The access token is ' + data.body['access_token']);
-
-            // Save the access token so that it's used in future calls
-            spotifyApi.setAccessToken(data.body['access_token']);
-        },
-        function (err) {
-            console.log('Something went wrong when retrieving an access token', err);
-        }
-    );
-}
 
 function addSongs() {
     songs.remove({});
@@ -78,11 +63,6 @@ app.post("/getPreview", function (request, response) {
     var energy = Number(request.body.energy);
     var sum = 0;
 
-    console.log(tempo);
-    console.log(dance);
-    console.log(acoustic);
-    console.log(energy);
-
     if (tempo == NaN || dance == NaN || acoustic == NaN || energy == NaN) {
         response.send("Bad Request");
     }
@@ -102,7 +82,6 @@ app.post("/getPreview", function (request, response) {
         });
         songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
              response.send(data[0].uri)
-             // response.send(JSON.stringify(data));
         });
 
     });
@@ -110,11 +89,9 @@ app.post("/getPreview", function (request, response) {
 
 });
 
-
 app.get("/", function (request, response) {
     response.sendFile('index.html', {root: __dirname});
 });
-
 
 //// DATABASE MANAGEMENT ////
 
@@ -143,14 +120,5 @@ function addSongsFromPlaylist( playlistID ) {
             console.log('Something went wrong!', err);
         });
 }
-
-// function sleep(milliseconds) {
-//     var start = new Date().getTime();
-//     for (var i = 0; i < 1e7; i++) {
-//         if ((new Date().getTime() - start) > milliseconds){
-//             break;
-//         }
-//     }
-// }
 
 app.listen(process.env.PORT || 8888);
