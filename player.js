@@ -112,7 +112,7 @@ app.post("/getPreview", function (request, response) {
 
 
 app.get("/", function (request, response) {
-    response.send(index.html);
+    response.sendFile('index.html', {root: __dirname});
 });
 
 
