@@ -97,6 +97,15 @@ app.get("/public/request.js", function (req, resp) {
     resp.sendFile('public/request.js', {root: __dirname});
 });
 
+app.get("/public/stylesheets/style.css", function (req, resp) {
+    resp.sendFile('/public/stylesheets/style.css', {root: __dirname});
+});
+
+// app.get("/node_modules", function (req, resp) {
+//     resp.sendFile('public/request.js', {root: __dirname});
+// });
+
+
 //// DATABASE MANAGEMENT ////
 
 function addSongsFromPlaylist( playlistID ) {
