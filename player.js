@@ -71,7 +71,7 @@ function addSongs() {
 
 //// REQUEST HANDLING ////
 
-app.get("/getPreview", function (request, response) {
+app.post("/getPreview", function (request, response) {
     var tempo = Number(request.query.tempo);
     var dance = Number(request.query.dance);
     var acoustic = Number(request.query.acoustic);
