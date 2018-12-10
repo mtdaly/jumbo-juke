@@ -1,0 +1,56 @@
+h1{
+	font-family: 'Rubik', sans-serif;
+	padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+    text-align: center;
+}
+
+
+body {
+    font-family: 'Karla', sans-serif;
+    color:white;
+    /*background-color:#191E21;*/
+    /*background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);*/
+    /*background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);*/
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    /*background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);*/
+    /*background-image: linear-gradient(to top, #09203f 0%, #537895 100%);*/
+    /*background-image: linear-gradient(to top, #09203f 0%, #537895 100%);*/
+    background-attachment:fixed;
+}
+
+.custom-range{
+	color:#ffffff;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+
+
+
