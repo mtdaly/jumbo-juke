@@ -90,7 +90,7 @@ app.post("/getPreview", function (request, response) {
 });
 
 app.get("/", function (request, response) {
-    response.sendFile('index.html', {root: __dirname});
+    response.sendFile('/public/index.html', {root: __dirname});
 });
 
 //// DATABASE MANAGEMENT ////
