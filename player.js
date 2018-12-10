@@ -100,10 +100,6 @@ app.get("/getPreview", function (request, response) {
                 { _id: song._id },
                 { $set: { "matchQuality": sum } }
             );
-            songs.find({ _id: song._id }).toArray( function (err, data) {
-                console.log(data);
-            });
-
             sum = 0;
         });
     });
