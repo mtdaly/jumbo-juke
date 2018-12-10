@@ -94,7 +94,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/public/request.js", function (req, resp) {
-    response.sendFile('public/request.js');
+    resp.sendFile('public/request.js');
 });
 
 //// DATABASE MANAGEMENT ////
