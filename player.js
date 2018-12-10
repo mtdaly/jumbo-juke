@@ -78,6 +78,10 @@ app.get("/getPreview", function (request, response) {
     var energy = Number(request.query.energy);
     var sum = 0;
 
+    console.log(tempo);
+    console.log(dance);
+    console.log(acoustic);
+    console.log(energy);
 
     if (tempo == NaN || dance == NaN || acoustic == NaN || energy == NaN) {
         response.send("Bad Request");
