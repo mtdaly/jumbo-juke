@@ -101,10 +101,6 @@ app.get("/public/stylesheets/style.css", function (req, resp) {
     resp.sendFile('/public/stylesheets/style.css', {root: __dirname});
 });
 
-// app.get("/node_modules", function (req, resp) {
-//     resp.sendFile('public/request.js', {root: __dirname});
-// });
-
 
 //// DATABASE MANAGEMENT ////
 
@@ -112,6 +108,7 @@ function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
             data.body.tracks.items.forEach(function (song) {
+                sleep(200);
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
                             songs.insert({
@@ -132,6 +129,10 @@ function addSongsFromPlaylist( playlistID ) {
         }, function (err) {
             console.log('Something went wrong!', err);
         });
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 app.listen(process.env.PORT || 8888);
