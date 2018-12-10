@@ -93,6 +93,10 @@ app.get("/", function (request, response) {
     response.sendFile('/public/index.html', {root: __dirname});
 });
 
+app.get("/public/request.js", function (req, resp) {
+    response.sendFile('public/request.js');
+});
+
 //// DATABASE MANAGEMENT ////
 
 function addSongsFromPlaylist( playlistID ) {
