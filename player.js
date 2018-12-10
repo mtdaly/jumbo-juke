@@ -119,7 +119,6 @@ function addSongsFromPlaylist( playlistID ) {
             data.body.tracks.items.forEach(function (song) {
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
-                        if (song.track.preview_url != null) {
                             songs.insert({
                                 "name": song.track.name,
                                 "id": song.track.id,
@@ -130,7 +129,6 @@ function addSongsFromPlaylist( playlistID ) {
                                 "energy": data.body.energy,
                                 "matchQuality": 100
                             });
-                        }
                     }, function (err) {
                         console.log(err);
                     });
