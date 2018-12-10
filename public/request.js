@@ -4,7 +4,7 @@ $(document).ready(function(){
 		slid1 = document.getElementById("dance").value / 100;
 		slid2 = document.getElementById("acoustic").value / 100;
 		slid3 = document.getElementById("energy").value / 100;
-		slid4 = ((document.getElementById("tempo").value * 1.5) + 50;
+		slid4 = ((document.getElementById("tempo").value) * 1.5) + 50;
 
 		console.log(slid1);
 		console.log(slid2);
