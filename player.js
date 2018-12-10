@@ -96,8 +96,8 @@ app.get("/getPreview", function (request, response) {
             sum = 0;
         });
         songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
-            // response.send(data[0].preview)
-             response.send(JSON.stringify(data));
+             response.send(data[0].preview)
+             // response.send(JSON.stringify(data));
         });
 
     });
@@ -123,7 +123,7 @@ function addSongsFromPlaylist( playlistID ) {
                             songs.insert({
                                 "name": song.track.name,
                                 "id": song.track.id,
-                                "preview": song.track.preview_url,
+                                "uri": song.track.uri,
                                 "tempo": data.body.tempo,
                                 "dance": data.body.danceability,
                                 "acoustic": data.body.acousticness,
