@@ -1,16 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta charset="utf-8" />
-    <title>JumboJuke</title>
+  <meta charset="utf-8" />
+  <title>Jumbo Juke</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- JQuery -->
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script src = "node_modules/clientside-require/dist/bundle.js"></script>
 </head>
 <body>
-  <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
-  <h2>Open your console log: <code>View > Developer > JavaScript Console</code></h2>
+  <h1>Jumbo Juke</h1>
+  <div class="container">
+    <div class="row">
+    <div class="col">
+        <label for="dance">Danceability</label>
+        <input type="range" class="custom-range" min="0" max="6" id="dance">
+        <label for="acoustic">Acousticness</label>
+        <input type="range" class="custom-range" min="0" max="6" id="acoustic">
+        <label for="energy">Energy</label>
+        <input type="range" class="custom-range" min="0" max="6" id="energy">
+        <label for="tempo">Tempo</label>
+        <input type="range" class="custom-range" min="0" max="6" id="tempo">
 
-  <!--<script src="https://sdk.scdn.co/spotify-player.js"></script>-->
-  <script src="player.js"></script>
+        <button id = "play" type="submit" class="btn btn-primary">Play a Song!</button>
+    </div>
+    <div class="col">
 
+      <iframe src="https://open.spotify.com/embed/track/0bYg9bo50gSsH3LtXe2SQn" id = "music_player" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+    <script src = "request.js"></script>
+    </div>
+
+  </div>
+
+
+  <!-- js required for Bootstrap -->  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
