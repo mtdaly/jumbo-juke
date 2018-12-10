@@ -96,10 +96,10 @@ app.get("/getPreview", function (request, response) {
             sum += Math.abs(song.energy - energy);
 
             console.log(sum);
-            // songs.update(
-            //     { _id: ObjectId(song._id) },
-            //     { matchQuality: sum }
-            // );
+            songs.update(
+                { _id: song._id },
+                { $set: { matchQuality: sum } }
+            );
             songs.find({ _id: song._id }).toArray( function (err, data) {
                 console.log(data);
             });
