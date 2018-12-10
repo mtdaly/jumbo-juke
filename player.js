@@ -72,10 +72,10 @@ function addSongs() {
 //// REQUEST HANDLING ////
 
 app.post("/getPreview", function (request, response) {
-    var tempo = Number(request.query.tempo);
-    var dance = Number(request.query.dance);
-    var acoustic = Number(request.query.acoustic);
-    var energy = Number(request.query.energy);
+    var tempo = Number(request.body.tempo);
+    var dance = Number(request.body.dance);
+    var acoustic = Number(request.body.acoustic);
+    var energy = Number(request.body.energy);
     var sum = 0;
 
     console.log(tempo);
