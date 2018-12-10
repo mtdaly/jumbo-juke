@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
 	$(document).on('click', "#play", function(){	
-		slid1 = document.getElementById("dance").value / 6;
-		slid2 = document.getElementById("acoustic").value / 6;
-		slid3 = document.getElementById("energy").value / 6;
-		slid4 = ((document.getElementById("tempo").value) * 25) + 50
+		slid1 = document.getElementById("dance").value ;
+		slid2 = document.getElementById("acoustic").value ;
+		slid3 = document.getElementById("energy").value ;
+		slid4 = ((document.getElementById("tempo").value));
 
 		console.log(slid1);
 		console.log(slid2);
