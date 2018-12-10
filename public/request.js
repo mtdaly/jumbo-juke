@@ -6,10 +6,10 @@ $(document).ready(function(){
 		slid3 = document.getElementById("energy").value / 100;
 		slid4 = ((document.getElementById("tempo").value) * 1.5) + 50;
 
-		console.log(slid1);
-		console.log(slid2);
-		console.log(slid3);
-		console.log(slid4);
+		// console.log(slid1);
+		// console.log(slid2);
+		// console.log(slid3);
+		// console.log(slid4);
 
 		qstring = "dance=" + slid1 + "&acoustic=" + slid2 + "&energy=" + slid3 + "&tempo=" + slid4;
 		
@@ -31,7 +31,7 @@ function AJAXrequest(url, postedData) {
 		data: JSON.stringify(postedData),
 		contentType: "application/JSON; charset=utf-8",
 		success: function(resultData) {
-			console.log("Success!");
+			// console.log("Success!");
 			var oldUrl = $("#music_player").attr("src"); // Get current url
         	var newUrl = "https://open.spotify.com/embed/track/";
         	just_uri = resultData.substring(14);
@@ -40,8 +40,8 @@ function AJAXrequest(url, postedData) {
 
 		},
 		error: function(resultData) {
-			console.log("error!");
-			console.log(resultData);
+			// console.log("error!");
+			// console.log(resultData);
 		}
 	});
 }
