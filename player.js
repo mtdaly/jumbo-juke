@@ -78,6 +78,7 @@ app.get("/getPreview", function (request, response) {
     var energy = Number(request.query.energy);
     var sum = 0;
 
+
     if (tempo == NaN || dance == NaN || acoustic == NaN || energy == NaN) {
         response.send("Bad Request");
     }
@@ -96,8 +97,8 @@ app.get("/getPreview", function (request, response) {
             sum = 0;
         });
         songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
-             // response.send(data[0].uri)
-             response.send(JSON.stringify(data));
+             response.send(data[0].uri)
+             // response.send(JSON.stringify(data));
         });
 
     });
