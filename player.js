@@ -96,7 +96,7 @@ app.get("/getPreview", function (request, response) {
             sum = 0;
         });
         songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
-             response.send(data[0].preview)
+             response.send(data[0].uri)
              // response.send(JSON.stringify(data));
         });
 
