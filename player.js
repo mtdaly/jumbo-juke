@@ -95,14 +95,11 @@ app.get("/getPreview", function (request, response) {
             );
             sum = 0;
         });
-    }).then( function () {
-         songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
+        songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
             // response.send(data[0].preview)
              response.send(JSON.stringify(data));
         });
 
-    }, function (err) {
-        console.log(err);
     });
 
 
