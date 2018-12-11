@@ -79,22 +79,14 @@ app.post("/getPreview", function (request, response) {
             sum += Math.pow(song.acoustic - acoustic, 2);
             sum += Math.pow(song.energy - energy, 2);
 
-            
             if (sum < minMQ) {
                 minMQ = sum;
                 minURI = song.uri;
             }
-            
-            songs.update(
-                { _id: song._id },
-                { $set: { "matchQuality": sum } }
-            );
+
             sum = 0;
         });
-        songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
-            console.log(minURI === data[0].uri);
-            response.send(data[0].uri)
-        });
+        response.send(minURI);
     });
 });
 
