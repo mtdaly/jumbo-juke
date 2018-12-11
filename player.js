@@ -126,7 +126,7 @@ function addSongsFromPlaylist( playlistID ) {
                                 "acoustic": data.body.acousticness,
                                 "energy": data.body.energy
                             });
-                            console.log("inserted!");
+                            console.log("inserted: ", song.track.name);
                     }, function (err) {
                         console.log(err);
                     });
