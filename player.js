@@ -22,6 +22,9 @@ var top50 = '37i9dQZEVXbLRQDuF5jeBp';
 var spotifySingles = '37i9dQZF1DWTUm9HjVUKnL';
 var mostPlayed = '2YRe7HRKNRvXdJBp9nXFza';
 
+
+var s = new Array();
+
 // Spotify API
 var spotifyApi = new SpotifyWebApi({
     clientId: 'a5dec87ebd744ebab9ff564c9fa2d802',
@@ -93,6 +96,14 @@ app.post("/getPreview", function (request, response) {
         console.log(arr.sort());
         response.send(minURI);
     });
+
+    // s.forEach( function (err, song) {
+    //     sum += Math.pow((song.tempo - tempo) / 150, 2);
+    //     sum += Math.pow(song.dance - dance, 2);
+    //     sum += Math.pow(song.acoustic - acoustic, 2);
+    //     sum += Math.pow(song.energy - energy, 2);
+    //
+    // })
 });
 
 app.get("/", function (request, response) {
@@ -126,11 +137,21 @@ function addSongsFromPlaylist( playlistID ) {
                                 "acoustic": data.body.acousticness,
                                 "energy": data.body.energy
                             });
+                            s.push({
+                                "name": song.track.name,
+                                "id": song.track.id,
+                                "uri": song.track.uri,
+                                "tempo": data.body.tempo,
+                                "dance": data.body.danceability,
+                                "acoustic": data.body.acousticness,
+                                "energy": data.body.energy
+                            });
                             console.log("inserted: ", song.track.name);
                     }, function (err) {
                         console.log(err);
                     });
             });
+            console.log("array: ", s);
 
         }, function (err) {
             console.log('Something went wrong!', err);
