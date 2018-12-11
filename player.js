@@ -72,7 +72,6 @@ app.post("/getPreview", function (request, response) {
 
     var minMQ = 100;
     var minURI = '';
-    var arr = new Array(); //TODO
     songs.find().toArray( function (err, data) {
         data.forEach( function (song) {
             sum += Math.pow((song.tempo - tempo) / 150, 2);
@@ -84,12 +83,8 @@ app.post("/getPreview", function (request, response) {
                 minMQ = sum;
                 minURI = song.uri;
             }
-
-            arr.push(sum); //TODO
-
             sum = 0;
         });
-        console.log(arr.sort()); //TODO
         response.send(minURI);
     });
 });
