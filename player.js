@@ -50,10 +50,6 @@ function addSongs() {
             addSongsFromPlaylist(top50);
             addSongsFromPlaylist(spotifySingles);
             addSongsFromPlaylist(mostPlayed);
-            console.log("starting round 2.... \n\n\n\n");
-            addSongsFromPlaylist(top50);
-            addSongsFromPlaylist(spotifySingles);
-            addSongsFromPlaylist(mostPlayed);
         },
         function (err) {
             console.log('Something went wrong when retrieving an access token', err);
