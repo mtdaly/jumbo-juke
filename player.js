@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded());
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.use(cors());
+// app.use(cors());
 
 var mongojs = require('mongojs');
 var mongoURL = process.env.MONGODB_URI;
@@ -60,11 +60,6 @@ app.post("/getPreview", function (request, response) {
     var acoustic = Number(request.body.acoustic);
     var energy = Number(request.body.energy);
     var sum = 0;
-
-    console.log(tempo);
-    console.log(dance);
-    console.log(acoustic);
-    console.log(energy);
 
     if (tempo == NaN || dance == NaN || acoustic == NaN || energy == NaN) {
         response.send("Bad Request");
