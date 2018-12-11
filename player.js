@@ -47,6 +47,10 @@ function addSongs() {
             addSongsFromPlaylist(top50);
             addSongsFromPlaylist(spotifySingles);
             addSongsFromPlaylist(mostPlayed);
+            console.log("starting round 2.... \n\n\n\n");
+            addSongsFromPlaylist(top50);
+            addSongsFromPlaylist(spotifySingles);
+            addSongsFromPlaylist(mostPlayed);
         },
         function (err) {
             console.log('Something went wrong when retrieving an access token', err);
@@ -116,12 +120,11 @@ function addSongsFromPlaylist( playlistID ) {
                                 "tempo": data.body.tempo,
                                 "dance": data.body.danceability,
                                 "acoustic": data.body.acousticness,
-                                "energy": data.body.energy,
-                                "matchQuality": 100
+                                "energy": data.body.energy
                             });
                             console.log("inserted!");
                     }, function (err) {
-                        console.log("Time-out error", err);
+                        console.log(err);
                     });
             });
 
