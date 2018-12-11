@@ -104,7 +104,7 @@ function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
             data.body.tracks.items.forEach(function (song) {
-                sleep(200);
+                sleep(500);
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
                     .then( function (data) {
                             songs.insert({
