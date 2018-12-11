@@ -20,6 +20,7 @@ var songs = db.collection('songs');
 // Spotify Playlists:
 var top50 = '37i9dQZEVXbLRQDuF5jeBp';
 var spotifySingles = '37i9dQZF1DWTUm9HjVUKnL';
+var mostPlayed = '2YRe7HRKNRvXdJBp9nXFza';
 
 // Spotify API
 var spotifyApi = new SpotifyWebApi({
@@ -45,6 +46,7 @@ function addSongs() {
 
             addSongsFromPlaylist(top50);
             addSongsFromPlaylist(spotifySingles);
+            addSongsFromPlaylist(mostPlayed);
         },
         function (err) {
             console.log('Something went wrong when retrieving an access token', err);
