@@ -72,7 +72,7 @@ app.post("/getPreview", function (request, response) {
 
     var minMQ = 100;
     var minURI = '';
-    var arr = new Array();
+    var arr = new Array(); //TODO
     songs.find().toArray( function (err, data) {
         data.forEach( function (song) {
             sum += Math.pow((song.tempo - tempo) / 150, 2);
@@ -85,21 +85,13 @@ app.post("/getPreview", function (request, response) {
                 minURI = song.uri;
             }
 
-            arr.push(sum);
+            arr.push(sum); //TODO
 
             sum = 0;
         });
-        console.log(arr.sort());
+        console.log(arr.sort()); //TODO
         response.send(minURI);
     });
-
-    // s.forEach( function (err, song) {
-    //     sum += Math.pow((song.tempo - tempo) / 150, 2);
-    //     sum += Math.pow(song.dance - dance, 2);
-    //     sum += Math.pow(song.acoustic - acoustic, 2);
-    //     sum += Math.pow(song.energy - energy, 2);
-    //
-    // })
 });
 
 app.get("/", function (request, response) {
@@ -120,7 +112,6 @@ app.get("/public/stylesheets/style.css", function (req, resp) {
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
-            var currentSong;
             data.body.tracks.items.forEach(function (song) {
                 sleep(1000);
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
@@ -134,25 +125,10 @@ function addSongsFromPlaylist( playlistID ) {
                                 "acoustic": data.body.acousticness,
                                 "energy": data.body.energy
                             });
-                            currentSong = {
-                                 "name": song.track.name,
-                                "id": song.track.id,
-                                "uri": song.track.uri,
-                                "tempo": data.body.tempo,
-                                "dance": data.body.danceability,
-                                "acoustic": data.body.acousticness,
-                                "energy": data.body.energy
-                            };
-
-                            if (!(currentSong in s)) {
-                                s.push(currentSong);
-                            }
                     }, function (err) {
                         console.log(err);
                     });
             });
-            console.log("\n\n\n\n", s.length);
-
         }, function (err) {
             console.log('Something went wrong!', err);
         });
