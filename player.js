@@ -119,9 +119,9 @@ function addSongsFromPlaylist( playlistID ) {
                                 "energy": data.body.energy,
                                 "matchQuality": 100
                             });
+                            console.log("inserted!");
                     }, function (err) {
-                        console.log("!!!!!!!");
-                        console.log(err);
+                        console.log("Time-out error", err);
                     });
             });
 
