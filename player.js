@@ -124,6 +124,7 @@ app.get("/public/stylesheets/style.css", function (req, resp) {
 function addSongsFromPlaylist( playlistID ) {
     spotifyApi.getPlaylist( playlistID )
         .then(function (data) {
+            var currentSong;
             data.body.tracks.items.forEach(function (song) {
                 sleep(1000);
                 spotifyApi.getAudioFeaturesForTrack(song.track.id)
@@ -137,21 +138,24 @@ function addSongsFromPlaylist( playlistID ) {
                                 "acoustic": data.body.acousticness,
                                 "energy": data.body.energy
                             });
-                            s.push({
-                                "name": song.track.name,
+                            currentSong = {
+                                 "name": song.track.name,
                                 "id": song.track.id,
                                 "uri": song.track.uri,
                                 "tempo": data.body.tempo,
                                 "dance": data.body.danceability,
                                 "acoustic": data.body.acousticness,
                                 "energy": data.body.energy
-                            });
-                            console.log("inserted: ", song.track.name);
+                            };
+
+                            if (!(currentSong in s)) {
+                                s.push(currentSong);
+                            }
                     }, function (err) {
                         console.log(err);
                     });
             });
-            console.log("array: ", s);
+            console.log("\n\n\n\n", s.length);
 
         }, function (err) {
             console.log('Something went wrong!', err);
