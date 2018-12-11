@@ -92,7 +92,7 @@ app.post("/getPreview", function (request, response) {
             sum = 0;
         });
         songs.find().sort({ matchQuality: 1}).toArray( function (err, data) {
-            console.log(data);
+            console.log(minURI === data[0].uri);
             response.send(data[0].uri)
         });
     });
