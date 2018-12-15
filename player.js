@@ -82,6 +82,7 @@ app.post("/getPreview", function (request, response) {
             }
             sum = 0;
         });
+        console.log(minId);
         response.send(minId);
     });
 });

@@ -30,7 +30,7 @@ function getSong() {
         contentType: "application/JSON; charset=utf-8",
         success: function (data) {
             console.log(data);
-            $("#music_player").attr("src", playTrackURL + data);
+            $("#music_player").attr("src", playTrackURL + data.toString());
         },
         error: function (err) {
             console.log(err);
