@@ -26,6 +26,7 @@ function getSong() {
         contentType: "application/JSON; charset=utf-8",
         success: function (data) {
             console.log(data);
+            console.log(data.substring(14));
             var newUrl = "https://open.spotify.com/embed/track/" + data.substring(14);
             $("#music_player").attr("src", newUrl);
         },
