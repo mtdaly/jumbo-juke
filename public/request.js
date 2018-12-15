@@ -39,9 +39,7 @@ function getSong(params) {
 		success: function(data) {
 		    // next line could be useful for building reccomendation history
 			// var oldUrl = $("#music_player").attr("src"); // Get current url
-        	var newUrl = "https://open.spotify.com/embed/track/" + data;
-        	just_uri = data.substring(14);
-        	newUrl += just_uri;
+        	var newUrl = "https://open.spotify.com/embed/track/" + data.substring(14);
         	$("#music_player").attr("src", newUrl);
 		},
 		error: function(err) {
