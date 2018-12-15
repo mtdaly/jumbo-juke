@@ -11,7 +11,7 @@ $(document).ready(function () {
         document.getElementById("dance").value = Math.floor(Math.random() * 100);
         document.getElementById("acoustic").value = Math.floor(Math.random() * 100);
         document.getElementById("energy").value = Math.floor(Math.random() * 100);
-        document.getElementById("tempo").value = getRandomIntInclusive(0, 100)
+        document.getElementById("tempo").value = getRandomIntInclusive(0, 100);
 
         getSong();
 
