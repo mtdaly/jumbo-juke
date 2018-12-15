@@ -1,31 +1,27 @@
 $(document).ready(function(){
 
-	$(document).on('click', "#play", function(){	
-		slid1 = document.getElementById("dance").value / 100;
-		slid2 = document.getElementById("acoustic").value / 100;
-		slid3 = document.getElementById("energy").value / 100;
-		slid4 = ((document.getElementById("tempo").value) * 1.5) + 50;
+	$(document).on('click', "#getSong", function(){
 
-		// console.log(slid1);
-		// console.log(slid2);
-		// console.log(slid3);
-		// console.log(slid4);
+		// Get parameters from sliders
+		var pD = document.getElementById("dance").value / 100;
+		var pA = document.getElementById("acoustic").value / 100;
+		var pE = document.getElementById("energy").value / 100;
+		var pT = ((document.getElementById("tempo").value) * 1.5) + 50;
 
-		qstring = "dance=" + slid1 + "&acoustic=" + slid2 + "&energy=" + slid3 + "&tempo=" + slid4;
-		
-		postedData = {
-					dance: slid1,
-					acoustic: slid2,
-					energy: slid3,
-					tempo: slid4
+		// Use parameters in AJAX request to get a song
+		var params = {
+					dance: pD,
+					acoustic: pA,
+					energy: pE,
+					tempo: pT
 				};
-		url = "https://jumbo-juke.herokuapp.com/";
-		AJAXrequest(url, postedData);
+		getSong(params);
+
 	});
 
     $(document).on('click', "#rand", function() {
 
-    	console.log("working...");
+        // Set sliders/params to random values
         document.getElementById("dance").value = Math.floor(Math.random()*100);
         document.getElementById("acoustic").value = Math.floor(Math.random()*100);
         document.getElementById("energy").value = Math.floor(Math.random()*100);
@@ -34,24 +30,22 @@ $(document).ready(function(){
     });
 });
 
-function AJAXrequest(url, postedData) {
+function getSong(params) {
 	$.ajax({
 		type: "POST",
 		url: "https://jumbo-juke.herokuapp.com/getPreview",
-		data: JSON.stringify(postedData),
+		data: JSON.stringify(params),
 		contentType: "application/JSON; charset=utf-8",
-		success: function(resultData) {
-			// console.log("Success!");
-			var oldUrl = $("#music_player").attr("src"); // Get current url
-        	var newUrl = "https://open.spotify.com/embed/track/";
+		success: function(params) {
+		    // next line could be useful for building reccomendation history
+			// var oldUrl = $("#music_player").attr("src"); // Get current url
+        	var newUrl = "https://open.spotify.com/embed/track/" + resultData
         	just_uri = resultData.substring(14);
         	newUrl += just_uri;
         	$("#music_player").attr("src", newUrl);
-
 		},
 		error: function(resultData) {
-			// console.log("error!");
-			// console.log(resultData);
+			console.log(resultData);
 		}
 	});
 }
