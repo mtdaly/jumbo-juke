@@ -36,16 +36,16 @@ function getSong(params) {
 		url: "https://jumbo-juke.herokuapp.com/getPreview",
 		data: JSON.stringify(params),
 		contentType: "application/JSON; charset=utf-8",
-		success: function(params) {
+		success: function(data) {
 		    // next line could be useful for building reccomendation history
 			// var oldUrl = $("#music_player").attr("src"); // Get current url
-        	var newUrl = "https://open.spotify.com/embed/track/" + resultData
-        	just_uri = resultData.substring(14);
+        	var newUrl = "https://open.spotify.com/embed/track/" + data;
+        	just_uri = data.substring(14);
         	newUrl += just_uri;
         	$("#music_player").attr("src", newUrl);
 		},
-		error: function(resultData) {
-			console.log(resultData);
+		error: function(err) {
+			console.log(err);
 		}
 	});
 }
