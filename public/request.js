@@ -26,10 +26,10 @@ $(document).ready(function(){
     $(document).on('click', "#rand", function() {
 
     	console.log("working...");
-        document.getElementById("dance").value = Math.random();
-        document.getElementById("acoustic").value = Math.random();
-        document.getElementById("energy").value = Math.random();
-        document.getElementById("tempo").value = getRandomIntInclusive(50, 200)
+        document.getElementById("dance").value = Math.floor(Math.random()*100);
+        document.getElementById("acoustic").value = Math.floor(Math.random()*100);
+        document.getElementById("energy").value = Math.floor(Math.random()*100);
+        document.getElementById("tempo").value = getRandomIntInclusive(0, 100)
 
     });
 });
