@@ -1,3 +1,7 @@
+var getSongURL = "https://jumbo-juke.herokuapp.com/getSong";
+var playTrackURL = "https://open.spotify.com/embed/track/";
+
+
 $(document).ready(function () {
 
     $(document).on('click', "#getSong", function () {
@@ -21,14 +25,11 @@ $(document).ready(function () {
 function getSong() {
     $.ajax({
         type: "POST",
-        url: "https://jumbo-juke.herokuapp.com/getPreview",
+        url: getSongURL,
         data: JSON.stringify(getParams()),
         contentType: "application/JSON; charset=utf-8",
         success: function (data) {
-            console.log(data);
-            console.log(data.substring(14));
-            var newUrl = "https://open.spotify.com/embed/track/" + data.substring(14);
-            $("#music_player").attr("src", newUrl);
+            $("#music_player").attr("src", playTrackURL + data);
         },
         error: function (err) {
             console.log(err);

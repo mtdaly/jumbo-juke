@@ -68,7 +68,7 @@ app.post("/getPreview", function (request, response) {
     }
 
     var minMQ = 100;
-    var minURI = '';
+    var minId = '';
     songs.find().toArray( function (err, data) {
         data.forEach( function (song) {
             sum += Math.pow((song.tempo - tempo) / 150, 2);
@@ -78,11 +78,11 @@ app.post("/getPreview", function (request, response) {
 
             if (sum < minMQ) {
                 minMQ = sum;
-                minURI = song.uri;
+                minId = song.id;
             }
             sum = 0;
         });
-        response.send(minURI);
+        response.send(minId);
     });
 });
 
