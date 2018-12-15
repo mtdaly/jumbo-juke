@@ -22,6 +22,16 @@ $(document).ready(function(){
 		url = "https://jumbo-juke.herokuapp.com/";
 		AJAXrequest(url, postedData);
 	});
+
+    $(document).on('click', "#rand", function() {
+
+    	console.log("working...");
+        document.getElementById("dance").value = Math.random();
+        document.getElementById("acoustic").value = Math.random();
+        document.getElementById("energy").value = Math.random();
+        document.getElementById("tempo").value = getRandomIntInclusive(50, 200)
+
+    });
 });
 
 function AJAXrequest(url, postedData) {
@@ -46,3 +56,10 @@ function AJAXrequest(url, postedData) {
 	});
 }
 
+
+// Code from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

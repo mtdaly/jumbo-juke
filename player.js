@@ -22,9 +22,6 @@ var top50 = '37i9dQZEVXbLRQDuF5jeBp';
 var spotifySingles = '37i9dQZF1DWTUm9HjVUKnL';
 var mostPlayed = '2YRe7HRKNRvXdJBp9nXFza';
 
-
-var s = new Array();
-
 // Spotify API
 var spotifyApi = new SpotifyWebApi({
     clientId: 'a5dec87ebd744ebab9ff564c9fa2d802',
@@ -66,7 +63,7 @@ app.post("/getPreview", function (request, response) {
     var energy = Number(request.body.energy);
     var sum = 0;
 
-    if (tempo == NaN || dance == NaN || acoustic == NaN || energy == NaN) {
+    if (tempo == NaN || dance === NaN || acoustic == NaN || energy == NaN) {
         response.send("Bad Request");
     }
 
