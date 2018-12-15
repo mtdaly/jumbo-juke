@@ -29,6 +29,7 @@ function getSong() {
         data: JSON.stringify(getParams()),
         contentType: "application/JSON; charset=utf-8",
         success: function (data) {
+            console.log(data);
             $("#music_player").attr("src", playTrackURL + data);
         },
         error: function (err) {
