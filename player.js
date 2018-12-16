@@ -56,7 +56,7 @@ function addSongs() {
 
 //// REQUEST HANDLING ////
 
-app.post("/getPreview", function (request, response) {
+app.post("/getSong", function (request, response) {
     var tempo = Number(request.body.tempo);
     var dance = Number(request.body.dance);
     var acoustic = Number(request.body.acoustic);
@@ -82,7 +82,6 @@ app.post("/getPreview", function (request, response) {
             }
             sum = 0;
         });
-        console.log(minId);
         response.send(minId);
     });
 });
