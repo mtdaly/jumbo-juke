@@ -1,6 +1,7 @@
 var getSongURL = "https://jumbo-juke.herokuapp.com/getSong";
 var playTrackURL = "https://open.spotify.com/embed/track/";
 
+
 $(document).ready(function () {
 
     $(document).on('click', "#getSong", function () {
@@ -11,9 +12,9 @@ $(document).ready(function () {
 
         // Needs enable check
         // Set sliders/params to random values
-        document.getElementById("dance").value = getRandomIntInclusive(0, 100);
-        document.getElementById("acoustic").value = getRandomIntInclusive(0, 100);
-        document.getElementById("energy").value = getRandomIntInclusive(0, 100);
+        document.getElementById("dance").value = Math.floor(Math.random() * 100);
+        document.getElementById("acoustic").value = Math.floor(Math.random() * 100);
+        document.getElementById("energy").value = Math.floor(Math.random() * 100);
         document.getElementById("tempo").value = getRandomIntInclusive(0, 100);
 
         getSong();
@@ -52,3 +53,11 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+
+
+
+/// Notes...
+
+// line could be useful for building reccomendation history
+// var oldUrl = $("#music_player").attr("src"); // Get current url
